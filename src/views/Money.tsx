@@ -49,7 +49,27 @@ const NoteSection = styled.section`
   }
 `;
 const CategorySection = styled.section`
-
+  font-size: 24px;
+  > ul{
+    display:flex;
+    background:#c4c4c4;
+    > li {
+      width: 50%; 
+      text-align:center;
+      padding: 16px 0;
+      position:relative;
+      &.selected::after{
+        content: '';
+        display:block; 
+        height: 3px;
+        background:#333;
+        position:absolute;
+        bottom:0;
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
 `;
 const NumberPadSection = styled.section`
 
@@ -70,12 +90,12 @@ function Money() {
             <NoteSection>
                 <label>
                     <span>Note:</span>
-                    <input type="text" placeholder="Add Your Notes in Here"/>
+                    <input type="text" placeholder="Add Your Note in Here"/>
                 </label>
             </NoteSection>
             <CategorySection>
                 <ul>
-                    <li>Expenditure</li>
+                    <li className="selected">Expenditure</li>
                     <li>Income</li>
                 </ul>
             </CategorySection>
