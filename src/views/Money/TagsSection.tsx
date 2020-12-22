@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import React, {useState} from 'react';
 
-const TagsSection = styled.section`
+const Wrapper = styled.section`
   background: #FFFFFF; 
   padding: 12px 16px;
   flex-grow: 1; 
@@ -17,6 +18,9 @@ const TagsSection = styled.section`
        padding: 3px 18px; 
        font-size: 14px; 
        margin: 8px 12px;
+       &.selected{
+        background: #f60;
+       }
     }
   }
   > button{
@@ -29,5 +33,39 @@ const TagsSection = styled.section`
     font-size: 10px;
   }
 `;
+
+const TagsSection: React.FC = () => {
+    const [tags, setTags] = useState<string[]>(['Clothes', 'Food', 'Living', 'Transportation']);
+    const [selectedTags, setSelectedTags] = useState<string[]>([]);
+    const onAddTag = () => {
+        const tagName = window.prompt("The new tag name you want to add is: ");
+        if(tagName !== null) {
+            setTags([...tags, tagName]);
+        }
+    }
+    const onToggleTag = (tag: string) => {
+        const index = selectedTags.indexOf(tag);
+        if(index >= 0) {
+            // Set all non-selected tags
+            setSelectedTags(selectedTags.filter(t => t !== tag));
+        } else {
+            setSelectedTags([...selectedTags, tag]);
+        }
+    }
+
+    return (
+        <Wrapper>
+            <ol>
+                {tags.map(tag =>
+                    <li key={tag} onClick={() => onToggleTag(tag)}
+                        className={selectedTags.indexOf(tag) >= 0 ? "selected" : ""}>
+                        {tag}
+                    </li>
+                )}
+            </ol>
+            <button onClick={onAddTag}>New Tags</button>
+        </Wrapper>
+    );
+};
 
 export {TagsSection};
