@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import {CategorySection} from './Money/CategorySection';
-import {NoteSection} from './Money/NotesSection';
+import {NoteSection} from './Money/NoteSection';
 import {NumberPadSection} from './Money/NumberPadSection';
 import {TagsSection} from './Money/TagsSection';
 
@@ -17,10 +17,6 @@ function Money() {
             <TagsSection>
             </TagsSection>
             <NoteSection>
-                <label>
-                    <span>Note:</span>
-                    <input type="text" placeholder="Add Your Note in Here"/>
-                </label>
             </NoteSection>
             <CategorySection>
                 <ul>
