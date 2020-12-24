@@ -25,16 +25,15 @@ function Money() {
     };
     return (
         <MyLayout>
-            <TagsSection selected={selected.tags}
-                         onChange={(tags) => setSelected({
-                                 ...selected,
-                                 tags: tags
-                             }
-                         )}/>
-            <NoteSection/>
-            <CategorySection/>
+            <TagsSection value={selected.tags}
+                         onChange={(tags) => onChange({tags})}/>
+            <NoteSection value={selected.note}
+                         onChange={(note) => onChange({note})}/>
+            <CategorySection value={selected.category}
+                             onChange={(category) => onChange({category})}/>
             <NumberPadSection value={selected.amount}
-                              onChange={amount => onChange({amount})}
+                              onChange={(amount) => onChange({amount})}
+                              onOk={() => {}}
             />
         </MyLayout>
     );

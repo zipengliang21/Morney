@@ -35,13 +35,13 @@ const Wrapper = styled.section`
 `;
 
 type Props = {
-    selected: string[];
+    value: string[];
     onChange: (selected: string[]) => void;
 }
 
 const TagsSection: React.FC<Props> = (props) => {
     const [tags, setTags] = useState<string[]>(['Clothes', 'Food', 'Living', 'Transportation']);
-    const selectedTags = props.selected;
+    const selectedTags = props.value;
     const onAddTag = () => {
         const tagName = window.prompt('The new tag name you want to add is: ');
         if (tagName !== null) {
