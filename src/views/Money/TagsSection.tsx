@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React, {useState} from 'react';
+import {useTags} from 'useTags';
 
 const Wrapper = styled.section`
   background: #FFFFFF; 
@@ -40,7 +41,7 @@ type Props = {
 }
 
 const TagsSection: React.FC<Props> = (props) => {
-    const [tags, setTags] = useState<string[]>(['Clothes', 'Food', 'Living', 'Transportation']);
+    const {tags, setTags} = useTags();
     const selectedTags = props.value;
     const onAddTag = () => {
         const tagName = window.prompt('The new tag name you want to add is: ');
