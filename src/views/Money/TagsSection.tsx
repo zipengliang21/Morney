@@ -34,31 +34,36 @@ const Wrapper = styled.section`
   }
 `;
 
-const TagsSection: React.FC = () => {
+type Props = {
+    selected: string[];
+    onChange: (selected: string[]) => void;
+}
+
+const TagsSection: React.FC<Props> = (props) => {
     const [tags, setTags] = useState<string[]>(['Clothes', 'Food', 'Living', 'Transportation']);
-    const [selectedTags, setSelectedTags] = useState<string[]>([]);
+    const selectedTags = props.selected;
     const onAddTag = () => {
-        const tagName = window.prompt("The new tag name you want to add is: ");
-        if(tagName !== null) {
+        const tagName = window.prompt('The new tag name you want to add is: ');
+        if (tagName !== null) {
             setTags([...tags, tagName]);
         }
-    }
+    };
     const onToggleTag = (tag: string) => {
         const index = selectedTags.indexOf(tag);
-        if(index >= 0) {
+        if (index >= 0) {
             // Set all non-selected tags
-            setSelectedTags(selectedTags.filter(t => t !== tag));
+            props.onChange(selectedTags.filter(t => t !== tag));
         } else {
-            setSelectedTags([...selectedTags, tag]);
+            props.onChange([...selectedTags, tag]);
         }
-    }
+    };
 
     return (
         <Wrapper>
             <ol>
                 {tags.map(tag =>
                     <li key={tag} onClick={() => onToggleTag(tag)}
-                        className={selectedTags.indexOf(tag) >= 0 ? "selected" : ""}>
+                        className={selectedTags.indexOf(tag) >= 0 ? 'selected' : ''}>
                         {tag}
                     </li>
                 )}

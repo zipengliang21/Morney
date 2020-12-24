@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import {CategorySection} from './Money/CategorySection';
@@ -11,35 +11,31 @@ const MyLayout = styled(Layout)`
   flex-direction: column;
 `;
 
+type Category = '-' | '+';
+
 function Money() {
+    const [selected, setSelected] = useState({
+        tags: [] as string[],
+        note: '',
+        category: '-' as Category,
+        amount: 0
+    });
+    const onChange = (obj: Partial<typeof selected>) => {
+        setSelected({...selected, ...obj});
+    };
     return (
-        <MyLayout className="">
-            <TagsSection>
-            </TagsSection>
-            <NoteSection>
-            </NoteSection>
+        <MyLayout>
+            <TagsSection selected={selected.tags}
+                         onChange={(tags) => setSelected({
+                                 ...selected,
+                                 tags: tags
+                             }
+                         )}/>
+            <NoteSection/>
             <CategorySection/>
-            <NumberPadSection>
-                <div className="output">
-                    100
-                </div>
-                <div className="pad clearfix">
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>Delete</button>
-                    <button>4</button>
-                    <button>5</button>
-                    <button>6</button>
-                    <button>Clear</button>
-                    <button>7</button>
-                    <button>8</button>
-                    <button>9</button>
-                    <button className="ok">OK</button>
-                    <button className="zero">0</button>
-                    <button>.</button>
-                </div>
-            </NumberPadSection>
+            <NumberPadSection value={selected.amount}
+                              onChange={amount => onChange({amount})}
+            />
         </MyLayout>
     );
 }
