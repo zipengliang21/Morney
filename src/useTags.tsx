@@ -1,11 +1,12 @@
 import {useState} from 'react';
+import {createId} from './lib/createId';
 
 const useTags = () => { // Create a custom React Hook
     const [tags, setTags] = useState<{ id: number; name: string }[]>([
-        {id: 1, name: 'Clothes'},
-        {id: 2, name: 'Food'},
-        {id: 3, name: 'Living'},
-        {id: 4, name: 'Transportation'}
+        {id: createId(), name: 'Clothes'},
+        {id: createId(), name: 'Food'},
+        {id: createId(), name: 'Living'},
+        {id: createId(), name: 'Transportation'}
     ]);
     return {tags, setTags};
 };
