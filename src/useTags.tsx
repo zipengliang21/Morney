@@ -22,12 +22,21 @@ const useTags = () => { // Create a custom React Hook
         return result;
     };
     const updateTag = (id: number, obj: {name:string}) => {
+        // Obtain the index of the Tag you want to update
         const index = findTagIndex(id);
+        // clone the original tags into the new one
         const tagsClone = JSON.parse(JSON.stringify(tags));
+        // replace the new tag
         tagsClone.splice(index, 1, {id: id, name: obj.name});
         setTags(tagsClone);
     };
-    return {tags, setTags, findTag, updateTag, findTagIndex};
+    const deleteTag = (id: number) => {
+        const index = findTagIndex(id);
+        const tagsClone = JSON.parse(JSON.stringify(tags));
+        tagsClone.splice(index, 1);
+        setTags(tagsClone);
+    }
+    return {tags, setTags, findTag, updateTag, findTagIndex, deleteTag};
 };
 
 export {useTags};

@@ -29,16 +29,11 @@ const InputWrapper = styled.div`
 `;
 
 const Tag: React.FC = () => {
-    const {findTag, updateTag} = useTags();
+    const {findTag, updateTag, deleteTag} = useTags();
     let {id: idString} = useParams<Params>();
     const tag = findTag(parseInt(idString));
-    return (
-        <Layout>
-            <TopBar>
-                <Icon name="left"/>
-                <span>Edit Tag</span>
-                <Icon/>
-            </TopBar>
+    const TagContent = (tag: {id: number; name: string}) => (
+        <div>
             <InputWrapper>
                 <Input label="Tag Name" type="text" placeholder="Tag Name"
                        value={tag.name}
@@ -48,8 +43,20 @@ const Tag: React.FC = () => {
             </InputWrapper>
             <Center>
                 <Space/>
-                <Button>Delete Tag</Button>
+                <Button onClick={() => deleteTag(tag.id)}>Delete Tag</Button>
             </Center>
+        </div>
+    );
+    return (
+        <Layout>
+            <TopBar>
+                <Icon name="left"/>
+                <span>Edit Tag</span>
+                <Icon/>
+            </TopBar>
+            {tag ? TagContent(tag) : <div>
+                <Center>This Tag does not exist anymore!</Center>
+            </div>}
         </Layout>
     );
 };
