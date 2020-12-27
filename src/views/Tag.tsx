@@ -1,6 +1,6 @@
 import React from 'react';
 import {useTags} from 'useTags';
-import {useParams} from "react-router-dom";
+import {useParams} from 'react-router-dom';
 import Layout from 'components/Layout';
 import Icon from 'components/Icon';
 import {Button} from '../components/Button';
@@ -29,25 +29,29 @@ const InputWrapper = styled.div`
 `;
 
 const Tag: React.FC = () => {
-    const {findTag} = useTags();
-    let { id } = useParams<Params>();
-    const tag = findTag(parseInt(id));
+    const {findTag, updateTag} = useTags();
+    let {id: idString} = useParams<Params>();
+    const tag = findTag(parseInt(idString));
     return (
         <Layout>
             <TopBar>
-                <Icon name="left" />
+                <Icon name="left"/>
                 <span>Edit Tag</span>
                 <Icon/>
             </TopBar>
             <InputWrapper>
-                <Input label="Tag Name" type="text" placeholder="Tag Name" value={tag.name}/>
+                <Input label="Tag Name" type="text" placeholder="Tag Name"
+                       value={tag.name}
+                       onChange={(e) => {
+                           updateTag(tag.id, {name: e.target.value});
+                       }}/>
             </InputWrapper>
             <Center>
-                <Space />
+                <Space/>
                 <Button>Delete Tag</Button>
             </Center>
         </Layout>
-    )
+    );
 };
 
 export {Tag};
