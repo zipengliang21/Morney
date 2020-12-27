@@ -1,15 +1,24 @@
-import {useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {createId} from './lib/createId';
-
-const defaultTags = [
-    {id: createId(), name: 'Clothes'},
-    {id: createId(), name: 'Food'},
-    {id: createId(), name: 'Living'},
-    {id: createId(), name: 'Transportation'}
-];
+import {useUpdate} from './hooks/useUpdate';
 
 const useTags = () => { // Create a custom React Hook
-    const [tags, setTags] = useState<{ id: number; name: string }[]>(defaultTags);
+    const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
+    useEffect(() => {
+        let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]');
+        if (localTags.length === 0) {
+            localTags = [
+                {id: createId(), name: 'Clothes'},
+                {id: createId(), name: 'Food'},
+                {id: createId(), name: 'Living'},
+                {id: createId(), name: 'Transportation'}
+            ];
+        }
+        setTags(localTags);
+    }, []);
+    useUpdate(() => {
+        window.localStorage.setItem('tags', JSON.stringify(tags));
+    }, [tags]);
     const findTag = (id: number) => {
         return tags.filter(tag => tag.id === id)[0];
     };
@@ -29,7 +38,13 @@ const useTags = () => { // Create a custom React Hook
     const deleteTag = (id: number) => {
         setTags(tags.filter(tag => tag.id !== id));
     };
-    return {tags, setTags, findTag, updateTag, findTagIndex, deleteTag};
+    const addTag = () => {
+        const tagName = window.prompt('The new tag name you want to add is: ');
+        if (tagName !== null && tagName !== "") {
+            setTags([...tags, {id: createId(), name: tagName}]);
+        }
+    };
+    return {tags, addTag, setTags, findTag, updateTag, findTagIndex, deleteTag};
 };
 
 export {useTags};
