@@ -18,7 +18,7 @@ const useTags = () => { // Create a custom React Hook
   }, []);
   useUpdate(() => {
     window.localStorage.setItem("tags", JSON.stringify(tags));
-  }, [tags]);
+  }, tags);
   const findTag = (id: number) => {
     return tags.filter(tag => tag.id === id)[0];
   };
