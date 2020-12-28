@@ -28,9 +28,10 @@ function Money() {
     };
     const {addRecord} = useRecords();
     const submit = () => {
-        addRecord(selected);
-        alert("Save Successfully!")
-        setSelected(defaultFormData);
+        if (addRecord(selected)) {
+            alert('Save Successfully!');
+            setSelected(defaultFormData);
+        }
     };
     return (
         <MyLayout>
