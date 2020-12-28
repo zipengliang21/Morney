@@ -1,11 +1,10 @@
-import styled from 'styled-components';
-import {useState} from 'react';
+import styled from "styled-components";
+import {useState} from "react";
 
 const Wrapper = styled.section`
   font-size: 24px;
   > ul{
     display:flex;
-    background:#c4c4c4;
     > li {
       width: 50%; 
       text-align:center;
@@ -26,27 +25,29 @@ const Wrapper = styled.section`
 `;
 
 type Props = {
-    value: "-" | "+",
-    onChange: (value: "-" | "+") => void;
+  value: "-" | "+",
+  onChange: (value: "-" | "+") => void;
 }
 
 const CategorySection: React.FC<Props> = (props) => {
-    const categoryMap = {"-": 'Expense', "+": 'Income'};
-    const [categoryList] = useState<('+' | '-')[]>(['-', '+']);
-    const category= props.value;
-    return (
-        <Wrapper>
-            <ul>
-                {categoryList.map(c =>
-                    <li key={c}
-                        className={category === c ? 'selected' : ''}
-                        onClick={() => {props.onChange(c);}}
-                    >{categoryMap[c]}
-                    </li>
-                )}
-            </ul>
-        </Wrapper>
-    );
+  const categoryMap = {"-": "Expense", "+": "Income"};
+  const [categoryList] = useState<("+" | "-")[]>(["-", "+"]);
+  const category = props.value;
+  return (
+    <Wrapper>
+      <ul>
+        {categoryList.map(c =>
+          <li key={c}
+              className={category === c ? "selected" : ""}
+              onClick={() => {
+                props.onChange(c);
+              }}
+          >{categoryMap[c]}
+          </li>
+        )}
+      </ul>
+    </Wrapper>
+  );
 };
 
 export {CategorySection};

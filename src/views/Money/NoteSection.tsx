@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import React, {ChangeEventHandler} from 'react';
-import {Input} from 'components/Input';
+import styled from "styled-components";
+import React, {ChangeEventHandler} from "react";
+import {Input} from "components/Input";
 
 const Wrapper = styled.section`
   background: #f5f5f5;
@@ -9,21 +9,21 @@ const Wrapper = styled.section`
 `;
 
 type Props = {
-    value: string;
-    onChange: (value: string) => void;
+  value: string;
+  onChange: (value: string) => void;
 }
 
 const NoteSection: React.FC<Props> = (props) => {
-    const note = props.value;
-    const onChange:ChangeEventHandler<HTMLInputElement> = (e) => {
-        props.onChange(e.target.value);
-    };
-    return (
-        <Wrapper>
-            <Input label="Note" type="text" value={note} onChange={onChange}
-            placeholder="Please Add Your Note in Here"/>
-        </Wrapper>
-    );
+  const note = props.value;
+  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    props.onChange(e.target.value);
+  };
+  return (
+    <Wrapper>
+      <Input label="Note" type="text" value={note} onChange={onChange}
+             placeholder="Please Add Your Note in Here"/>
+    </Wrapper>
+  );
 };
 
 export {NoteSection};

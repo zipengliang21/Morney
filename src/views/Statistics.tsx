@@ -1,12 +1,31 @@
-import React from 'react';
-import Layout from '../components/Layout';
+import React, {useState} from "react";
+import Layout from "../components/Layout";
+import {CategorySection} from "./Money/CategorySection";
+import styled from "styled-components";
+import {useRecords} from "../hooks/useRecords";
+
+const CategoryWrapper = styled.div`
+      background: white;
+`;
 
 function Statistics() {
-    return (
-        <Layout>
-            <h2>Statistics Report</h2>
-        </Layout>
-    );
+  const [category, setCategory] = useState<"-" | "+">("-");
+  const {records} = useRecords();
+  return (
+    <Layout>
+      <CategoryWrapper>
+        <CategorySection value={category}
+                         onChange={(category) => setCategory(category)}/>
+      </CategoryWrapper>
+      <div>
+        {records.map(r => {
+          return <div>
+            {r.amount}
+          </div>;
+        })}
+      </div>
+    </Layout>
+  );
 }
 
 export default Statistics;

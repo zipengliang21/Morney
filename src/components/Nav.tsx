@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import {NavLink} from 'react-router-dom';
-import React from 'react';
-import Icon from './Icon';
+import styled from "styled-components";
+import {NavLink} from "react-router-dom";
+import React from "react";
+import Icon from "./Icon";
 
 const NavWrapper = styled.nav`
   background-color: white;
@@ -33,30 +33,30 @@ const NavWrapper = styled.nav`
 `;
 
 const Nav = () => {
-    return (
-        <NavWrapper>
-            <ul>
-                <li>
-                    <NavLink to="/tags" activeClassName="selected">
-                        <Icon name="tag"/>
-                        Tag Page
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/money" activeClassName="selected">
-                        <Icon name="dollar"/>
-                        Money
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/statistics" activeClassName="selected">
-                        <Icon name="chart"/>
-                        Statistics Report
-                    </NavLink>
-                </li>
-            </ul>
-        </NavWrapper>
-    );
+  return (
+    <NavWrapper>
+      <ul>
+        <li>
+          <NavLink to="/tags" activeClassName="selected">
+            <Icon name="tag"/>
+            Tag Page
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/money" activeClassName="selected">
+            <Icon name="dollar"/>
+            Money
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/statistics" activeClassName="selected">
+            <Icon name="chart"/>
+            Statistics Report
+          </NavLink>
+        </li>
+      </ul>
+    </NavWrapper>
+  );
 };
 
 export default Nav;

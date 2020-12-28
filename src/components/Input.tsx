@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Label = styled.label`
     display:flex;
@@ -15,17 +15,17 @@ const Label = styled.label`
 `;
 
 type Props = {
-    label: string;
+  label: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input: React.FC<Props> = (props) => {
-    const {label, children, ...rest} = props;
-    return (
-        <Label>
-            <span>{props.label}</span>
-            <input {...rest}/>
-        </Label>
-    );
+  const {label, children, ...rest} = props;
+  return (
+    <Label>
+      <span>{props.label}</span>
+      <input {...rest}/>
+    </Label>
+  );
 };
 
 export {Input};

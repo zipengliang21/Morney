@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import React from 'react';
-import {useTags} from 'hooks/useTags';
+import styled from "styled-components";
+import React from "react";
+import {useTags} from "hooks/useTags";
 
 const Wrapper = styled.section`
   background: #FFFFFF; 
@@ -36,36 +36,36 @@ const Wrapper = styled.section`
 `;
 
 type Props = {
-    value: number[];
-    onChange: (selected: number[]) => void;
+  value: number[];
+  onChange: (selected: number[]) => void;
 }
 
 const TagsSection: React.FC<Props> = (props) => {
-    const {tags, addTag} = useTags();
-    const selectedTagIds = props.value;
-    const onToggleTag = (tagId: number) => {
-        const index = selectedTagIds.indexOf(tagId);
-        if (index >= 0) {
-            // Set all non-selected tags
-            props.onChange(selectedTagIds.filter(t => t !== tagId));
-        } else {
-            props.onChange([...selectedTagIds, tagId]);
-        }
-    };
+  const {tags, addTag} = useTags();
+  const selectedTagIds = props.value;
+  const onToggleTag = (tagId: number) => {
+    const index = selectedTagIds.indexOf(tagId);
+    if (index >= 0) {
+      // Set all non-selected tags
+      props.onChange(selectedTagIds.filter(t => t !== tagId));
+    } else {
+      props.onChange([...selectedTagIds, tagId]);
+    }
+  };
 
-    return (
-        <Wrapper>
-            <ol>
-                {tags.map(tag =>
-                    <li key={tag.id} onClick={() => onToggleTag(tag.id)}
-                        className={selectedTagIds.indexOf(tag.id) >= 0 ? 'selected' : ''}>
-                        {tag.name}
-                    </li>
-                )}
-            </ol>
-            <button onClick={addTag}>New Tags</button>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <ol>
+        {tags.map(tag =>
+          <li key={tag.id} onClick={() => onToggleTag(tag.id)}
+              className={selectedTagIds.indexOf(tag.id) >= 0 ? "selected" : ""}>
+            {tag.name}
+          </li>
+        )}
+      </ol>
+      <button onClick={addTag}>New Tags</button>
+    </Wrapper>
+  );
 };
 
 export {TagsSection};
