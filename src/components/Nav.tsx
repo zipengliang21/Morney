@@ -51,7 +51,7 @@ const Nav = () => {
         <li>
           <NavLink to="/statistics" activeClassName="selected">
             <Icon name="chart"/>
-            Statistics Report
+            Statistics
           </NavLink>
         </li>
       </ul>
