@@ -1,6 +1,7 @@
 {
   "name": "morney",
   "version": "0.1.0",
+  "homepage": "https://zipengliang21.github.io/Morney-Website",
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.3",
